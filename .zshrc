@@ -98,5 +98,4 @@ alias la="ls -la"
 alias setJDK7="export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)"
 alias setJDK8="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
 alias cbtTunnel="./cbt-tunnels-mac --username jeroen.vanleenen@office.ziggo.nl --authkey ZiggoDigital01!" 
-setJDK7
-alias config='usr/bin/git --git-dir=/Users/hendrieleveld/.mycfg/ --work-tree=/Users/hendrieleveld'
+alias config='/usr/bin/git --git-dir=/Users/hendrieleveld/.mycfg/ --work-tree=/Users/hendrieleveld'
