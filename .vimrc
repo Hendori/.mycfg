@@ -23,13 +23,20 @@ augroup myvimrc
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
 
+" Vundle plugins
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin() "begins the vim plugins
+Plugin 'git://github.com/tpope/vim-surround.git' " surround plugin
+call vundle#end() " End the plugins
+filetype plugin indent on    " required
+
 " Set generic quick keys
 inoremap <Space><Space> <Esc>/<==><Return>"_c4l
 vnoremap <Space><Space> <Esc>/<==><Return>"_c4l
 map <Space><Space> <Esc>/<==><Return>"_c4l
 inoremap ;gui <==>
 
-" specific javascript hotkeys
+" Specific javascript hotkeys
 autocmd FileType javascript inoremap ;it <Esc>0i<Tab>it('',<Space>function()<Space>{<Return><Tab><Tab><==><Return><Tab>});<Esc>2k2lci'
 autocmd FileType javascript inoremap ;get cy.get()<==><Esc>5hci(
 autocmd FileType javascript inoremap ;de <Esc>0idescribe('',<Space>function()<Space>{<Return><Tab><==><Return>});<Esc>2k7lci'
