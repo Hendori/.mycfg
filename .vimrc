@@ -16,14 +16,18 @@ set expandtab
 set path+=**
 set wildmenu
 
+" Set highlight search
+set hlsearch
+
 " Set commands 
 command! Maketags !ctags -R .
 
 " Set Statusline
-set laststatus=2
-set statusline+=%f
+set statusline+=%f\ %l\:%c
+" Set autoread
+set autoread
 
-filetype plugin on
+
 
 augroup myvimrc
     au!
@@ -34,9 +38,10 @@ augroup END
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin() "begins the vim plugins
 Plugin 'git://github.com/tpope/vim-surround.git' " surround plugin
-Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end() " End the plugins
 filetype plugin indent on    " required
+
 
 " Set generic quick keys
 inoremap <Space><Space> <Esc>/<==><Return>"_c4l
@@ -44,7 +49,10 @@ vnoremap <Space><Space> <Esc>/<==><Return>"_c4l
 map <Space><Space> <Esc>/<==><Return>"_c4l
 inoremap ;gui <==>
 
-" Specific javascript hotkeys
+
+filetype plugin on
+
+" Specific cypress hotkeys
 autocmd FileType javascript inoremap ;it <Esc>0i<Tab>it('',<Space>function()<Space>{<Return><==><Return>});<Esc>2k2lci'
 autocmd FileType javascript inoremap ;get <Esc>0icy.get()<==><Esc>5hci(
 autocmd FileType javascript inoremap ;de <Esc>0idescribe('',<Space>function()<Space>{<Return><==><Return>});<Esc>2k7lci'
