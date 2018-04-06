@@ -22,8 +22,35 @@ set hlsearch
 " Set commands 
 command! Maketags !ctags -R .
 
+
+set laststatus=2
+
 " Set Statusline
-set statusline+=%f\ %l\:%c
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m\
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\ 
+
+
 " Set autoread
 set autoread
 
@@ -44,7 +71,7 @@ filetype plugin indent on    " required
 
 
 " Set generic quick keys
-inoremap <Space><Space> <Esc>/<==><Return>"_c4l
+inoremap <Space><Space> <Esc>/'.l:branchname.' ':''<Return>"_c4l
 vnoremap <Space><Space> <Esc>/<==><Return>"_c4l
 map <Space><Space> <Esc>/<==><Return>"_c4l
 inoremap ;gui <==>
