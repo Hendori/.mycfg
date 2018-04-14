@@ -38,6 +38,8 @@ Plugin 'git://github.com/tpope/vim-surround.git' " surround plugin
 Plugin 'Valloric/YouCompleteMe'
 " airline
 Plugin 'vim-airline/vim-airline'
+" gitgutter
+Plugin 'https://github.com/airblade/vim-gitgutter'
 " Plugin 'vim-airline/vim-airline-themes'
 "Haskell plugins
 Plugin 'gmarik/Vundle.vim'
@@ -48,11 +50,13 @@ Plugin 'Shougo/vimproc'
 call vundle#end() " End the plugins
 filetype plugin indent on    " required
 
+" set updatetime=100
+
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \}
 
-let g:ale_fix_on_save = 1
+" let g:ale_fix_on_save = 1
 
 " set mapleader to ;
 let mapleader=';'
