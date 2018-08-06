@@ -9,7 +9,7 @@ export ZSH=/Users/hendrieleveld/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="amuse"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -97,7 +97,8 @@ source $ZSH/oh-my-zsh.sh
 alias la="ls -la"
 alias setJDK7="export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)"
 alias setJDK8="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
-alias cbtTunnel="./cbt-tunnels-mac --username jeroen.vanleenen@office.ziggo.nl --authkey ZiggoDigital01!" 
+alias setJDK9="export JAVA_HOME=$(/usr/libexec/java_home -v 1.9)"
+alias vim='mvim -v'
 setJDK7
 alias config='/usr/bin/git --git-dir=/Users/hendrieleveld/.mycfg/ --work-tree=/Users/hendrieleveld'
 alias startAEM='./ziggo/ziggo/crx-quickstart/bin/start'
@@ -113,3 +114,6 @@ cat ~/.cache/wal/sequences
 # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh
 clear
+
+alias setAEM62='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); rm -f ~/.m2/settings.xml; cp ~/.m2/settingsAEM6.xml ~/.m2/settings.xml'
+alias setAEM56='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7); rm -f ~/.m2/settings.xml;cp ~/.m2/settingsAEM5.xml ~/.m2/settings.xml'

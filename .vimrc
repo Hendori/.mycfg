@@ -1,6 +1,7 @@
 set nocompatible
-set cursorline
+"set cursorline
 syntax on
+set t_Co=256
 
 " Set ruler
 set ruler
@@ -21,57 +22,53 @@ set hlsearch
 
 " Set commands 
 command! Maketags !ctags -R .
+"com! FormatJSON %!python -m json.tool
 
 " Set autoread
 set autoread
 
-augroup myvimrc
-    au!
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-augroup END
+"augroup myvimrc
+"    au!
+"    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+"augroup END
+
 
 " Vundle plugins
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin() "begins the vim plugins
+Plugin 'https://github.com/dylanaraps/wal.vim.git'
 " Generic plugins
 Plugin 'git://github.com/tpope/vim-surround.git' " surround plugin
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 " airline
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " gitgutter
 Plugin 'https://github.com/airblade/vim-gitgutter'
-" Plugin 'vim-airline/vim-airline-themes'
 "Haskell plugins
 Plugin 'gmarik/Vundle.vim'
-"  Plugin 'mlent/ale' -- Has a small change for multi-line ghc errors, see below
+"Plugin 'mlent/ale'
+ " Has a small change for multi-line ghc errors, see below
 Plugin 'w0rp/ale'
-Plugin 'eagletmt/ghcmod-vim'
 Plugin 'Shougo/vimproc'
+" GHC specific plugin
+Plugin 'eagletmt/ghcmod-vim'
 call vundle#end() " End the plugins
 filetype plugin indent on    " required
+colorscheme wal
+set updatetime=1000
 
-" set updatetime=100
-
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\}
-
-" let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 1
 
 " set mapleader to ;
 let mapleader=';'
 
 filetype plugin on
 
-" for ALE and airline
-let g:airline#extensions#ale#enabled = 1
 
 " Set generic quick keys
-inoremap <Space><Space> <Esc>/branchname.' ':''<Return>"_c4l
-vnoremap <Space><Space> <Esc>/<==><Return>"_c4l
-map <Space><Space> <Esc>/<==><Return>"_c4l
-inoremap <leader>gui <==>
-
 
 " ALE lint keys
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -86,8 +83,8 @@ autocmd FileType javascript inoremap <leader>be <Esc>0ibeforeEach(function()<Spa
 autocmd FileType javascript inoremap <leader>var <==><Esc>/var<Return>Novar<Space><Space>=<Space>'<==>';<Esc>9hi
 
 " Specific haskell hotkeys
-autocmd FileType haskell inoremap .. ->
-autocmd FileType haskell inoremap ,, <-
+autocmd FileType haskell inoremap <leader>. -><Space>
+autocmd FileType haskell inoremap <leader>, <-<Space>
 autocmd FileType nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
 nnoremap <Leader>ht :GhcModType<cr>
 nnoremap <Leader>htc :GhcModTypeClear<cr>
