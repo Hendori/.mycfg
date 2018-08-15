@@ -39,6 +39,7 @@ call vundle#begin() "begins the vim plugins
 Plugin 'https://github.com/dylanaraps/wal.vim.git'
 " Generic plugins
 Plugin 'git://github.com/tpope/vim-surround.git' " surround plugin
+
 " Plugin 'Valloric/YouCompleteMe'
 " airline
 Plugin 'vim-airline/vim-airline'
@@ -53,12 +54,14 @@ Plugin 'w0rp/ale'
 Plugin 'Shougo/vimproc'
 " GHC specific plugin
 Plugin 'eagletmt/ghcmod-vim'
+"Showing whitespaces
+Plugin 'ntpeters/vim-better-whitespace'
 call vundle#end() " End the plugins
 filetype plugin indent on    " required
 colorscheme wal
-set updatetime=1000
+set updatetime=1000    
 
-let g:ale_fix_on_save = 0
+let g:ale_fix_on_save = 1
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 1
 
@@ -67,6 +70,9 @@ let mapleader=';'
 
 filetype plugin on
 
+" Automate for whitespace
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_safe=1
 
 " Set generic quick keys
 
@@ -89,3 +95,4 @@ autocmd FileType nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()
 nnoremap <Leader>ht :GhcModType<cr>
 nnoremap <Leader>htc :GhcModTypeClear<cr>
 
+autocmd! bufwritepost .vimrc source %
